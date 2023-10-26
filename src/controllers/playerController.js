@@ -51,7 +51,7 @@ const putPlayer = async (req, res) => {
     if (
       !id ||
       !name ||
-      !score ||
+      !score
     ) {
       return res.status(400).json({ message: "There is missing information" });
     }

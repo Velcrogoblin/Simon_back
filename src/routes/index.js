@@ -1,6 +1,6 @@
 const { Router } = require("express");
 
-const playerRoutes = require("./purchaseRoutes.js");
+const playerRoutes = require("./playerRoutes.js");
 
 const router = Router();
 
