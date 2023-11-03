@@ -48,6 +48,8 @@ const putPlayer = async (req, res) => {
       score,
     } = req.body;
 
+    console.log("1");
+
     if (
       !id ||
       !name ||
@@ -56,7 +58,7 @@ const putPlayer = async (req, res) => {
       return res.status(400).json({ message: "There is missing information" });
     }
 
-    const existingPlayer = await Product.findByPk(id);
+    const existingPlayer = await Player.findByPk(id);
 
     if (!existingPlayer) {
       return res
