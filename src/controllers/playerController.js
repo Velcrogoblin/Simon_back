@@ -30,7 +30,7 @@ const postPlayer = async (req, res) => {
       score
     });
 
-    const allPlayers = await Player.findAll().sort((r1, r2) => (r1.score > r2.score) ? 1 : (r1.score < r2.score) ? -1 : 0);
+    const allPlayers = await Player.findAll();
     console.log(allPlayers);
     // allPlayers = allPlayers.sort((r1, r2) => (r1.score > r2.score) ? 1 : (r1.score < r2.score) ? -1 : 0);
     // deletePlayer = await Player.findByPk(deletePlayer[0].id);
