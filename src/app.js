@@ -10,7 +10,7 @@ require("./db.js");
 const server = express();
 
 server.use(cors({
-  origin: "http://localhost:5173",
+  origin: "https://simonthegame.vercel.app/",
   methods: ["GET", "POST", "PUT", "DELETE"]
 }))
 
@@ -22,7 +22,7 @@ server.use(bodyParser.json({ limit: "50mb" }));
 server.use(cookieParser());
 server.use(morgan("dev"));
 server.use((req, res, next) => {
-  res.header("Access-Control-Allow-Origin", "http://localhost:5173");
+  res.header("Access-Control-Allow-Origin", "https://simonthegame.vercel.app/");
   res.header("Access-Control-Allow-Credentials", "true");
   res.header(
     "Access-Control-Allow-Headers",
