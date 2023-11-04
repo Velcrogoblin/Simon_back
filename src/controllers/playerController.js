@@ -30,15 +30,6 @@ const postPlayer = async (req, res) => {
       score
     });
 
-    const allPlayers = await Player.findAll();
-    allPlayers = allPlayers.sort((r1, r2) => (r1.score > r2.score) ? 1 : (r1.score < r2.score) ? -1 : 0);
-    allPlayers = allPlayers[0];
-
-    const deletePlayer = await Player.findOne({where: {id: allPlayers.id}});
-    deletePlayer.destroy();
-    // deletePlayer = await Player.findByPk(deletePlayer[0].id);
-    // deletePlayer.destroy();
-
     return res
       .status(201)
       .json({ message: `${name} was created!` });
@@ -56,8 +47,6 @@ const putPlayer = async (req, res) => {
       name,
       score,
     } = req.body;
-
-    console.log("1");
 
     if (
       !id ||
@@ -86,8 +75,25 @@ const putPlayer = async (req, res) => {
   }
 };
 
+const destroyPlayer = async (req, res) => {
+  const { id } = req.params
+  try {
+    const deletePlayer = await Player.findByPk(id);
+    
+    if(!deletePlayer) {
+      return res.status(404).json ({message: `No players found with id: ${id}`});
+    }
+
+    await deletePlayer.destroy();
+    return res.status(200).json({message: "Player was deleted successfuly"});
+  } catch (error) {
+    
+  }
+}
+
 module.exports = {
   getAllPlayers,
   postPlayer,
-  putPlayer
+  putPlayer,
+  destroyPlayer
 };
